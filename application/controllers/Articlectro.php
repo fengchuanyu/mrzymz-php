@@ -9,6 +9,12 @@ error_reporting(E_ALL ^ E_NOTICE);//防止notcie爆出
               $this->load->model('Server/pageServer/Articlpage');
         }
 
+        /**
+         * @param null
+         * @return null
+         * @desc 接口： 获取文章列表通过aid，不传递全查
+         * @author 沈雨康（shenyukang@126.com）
+         */
         public function get_articl_message(){
 
             $aid = $_POST['aid'];
@@ -29,6 +35,13 @@ error_reporting(E_ALL ^ E_NOTICE);//防止notcie爆出
             }
 
         }
+
+        /**
+         * @param null
+         * @return null
+         * @desc 接口： 删除文章
+         * @author 沈雨康（shenyukang@126.com）
+         */
         public function delect_article_byid(){
             $aid = $_POST['aid'];
             $aid = intval($aid);
@@ -41,7 +54,7 @@ error_reporting(E_ALL ^ E_NOTICE);//防止notcie爆出
          * @prams null;
          * @return null;
          * @author 沈雨康(shenyukang@126.com)
-         * @desc 文章变更（文章修改）通过aid来变更对应的文章字段。
+         * @desc 接口： 文章变更（文章修改）通过aid来变更对应的文章字段。
          */
         public function uparticle(){
             $aid            = $_POST['aid'];
@@ -61,7 +74,7 @@ error_reporting(E_ALL ^ E_NOTICE);//防止notcie爆出
          * @prams null;
          * @return null;
          * @author 沈雨康(shenyukang@126.com)
-         * @desc 文章变更（文章修改）通过aid来变更对应的文章字段。
+         * @desc 接口：新增文章
          */
         public function insertartil(){
             $articleTitle   = $_POST['article_title'];

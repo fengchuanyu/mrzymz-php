@@ -28,4 +28,68 @@ class Doctorpage extends CI_Model{
 
     }
 
+    public function delect_byid($did){
+        return $this->Doctordata->delect_byid($did);;
+    }
+
+    public function updoc($did, $doctorName, $doctorImage, $doctorMessage, $doctorPlace, $doctorOffice, $doctorJob, $doctorPrice){
+        $arryField = array(
+            'did'            => $did,
+            'doctor_name'    => $doctorName,
+            'doctor_image'   => $doctorImage,
+            'doctor_message' => $doctorMessage,
+            'doctor_place'   => $doctorPlace,
+            'doctor_office'  => $doctorOffice,
+            'doctor_job'     => $doctorJob,
+            'doctor_price'   => $doctorPrice
+        );
+        if (empty($did)) {
+            return array(
+                'data'    => 0,
+                'code'    => EXIT_ERROR,
+                'message' => "为选中医生，did为空"
+            );
+        } else {
+            foreach ($arryField as $key => $value) {
+//            去掉空的字段，为传递字段。
+                if (empty($value)) {
+                    $arryField = array_diff_key($arryField, array($key => 'value'));
+                }
+            }
+            //将经过过滤的字段数组传递过去
+            return $this->Doctordata->updoctordata($arryField);
+        }
+
+
+
+    }
+
+    public function adddoc($doctorName, $doctorImage, $doctorMessage, $doctorPlace, $doctorOffice, $doctorJob, $doctorPrice){
+        if (empty($doctorName) || empty($doctorJob) || empty($doctorOffice) || empty($doctorPrice)) {
+            return array(
+                'data'    => 0,
+                'code'    => EXIT_ERROR,
+                'message' => "医生姓名，职务，科室，挂号费用等关键字段不能为空"
+            );
+        } else {
+            $arrayField = array(
+                'doctor_name'    => $doctorName,
+                'doctor_image'   => $doctorImage,
+                'doctor_message' => $doctorMessage,
+                'doctor_place'   => $doctorPlace,
+                'doctor_office'  => $doctorOffice,
+                'doctor_job'     => $doctorJob,
+                'doctor_price'   => $doctorPrice
+            );
+            foreach ($arrayField as $key => $value) {
+//            去掉空的字段，为传递字段。
+                if (empty($value)) {
+                    $arryField = array_diff_key($arrayField, array($key => 'value'));
+                }
+            }
+            //将经过过滤的字段数组传递过去
+            return $this->Doctordata->add_doctordata($arryField);
+        }
+    }
+
 }

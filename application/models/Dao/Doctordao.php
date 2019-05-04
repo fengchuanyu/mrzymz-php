@@ -5,10 +5,25 @@ class Doctordao extends CI_Model
 {
     var $table = 'doctor';
 
-    public function select($arrayFiles)
-    {
+    public function select($arrayFiles){
         $res = $this->db->get_where($this->table, $arrayFiles);
         return $res->result();
+    }
+
+    public function delectbyid($arraycon){
+        $this->db->delete($this->table, $arraycon);
+        return $this->db->affected_rows();
+    }
+
+    public function updocdao($arrayCon, $arrayfilds){
+
+        $this->db->update($this->table, $arrayfilds, $arrayCon);
+        return $this->db->affected_rows();
+    }
+
+    public function add_docdao($arrayField){
+        $this->db->insert($this->table, $arrayField);
+        return $this->db->affected_rows();
     }
 }
 
