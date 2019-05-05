@@ -12,7 +12,8 @@ class Casedao extends CI_Model{
     }
 
     public function selects($arrCons){
-        return $this->db->get_where($this->table, $arrCons);
+        $res = $this->db->get_where($this->table,$arrCons);
+        return $res->result();
     }
 
     public function delect_dao($arrConf){
